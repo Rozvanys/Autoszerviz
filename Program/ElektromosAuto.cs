@@ -6,27 +6,27 @@ namespace Program
 {
     public class ElektromosAuto : Jarmu
     {
-        private int akkumlatorSzint;
+        private int akkumulatorSzint;
 
-		public ElektromosAuto(string rendszam, int kor, int kilometerOra, int akkumlatorSzint) : base(rendszam, kor, kilometerOra, 0)
+		public ElektromosAuto(string rendszam, int kor, int kilometerOra, int akkumulatorSzint) : base(rendszam, kor, kilometerOra, 0)
 		{
-			this.AkkumlatorSzint = akkumlatorSzint;
+			AkkumulatorSzint = akkumulatorSzint;
 		}
 
-		public int AkkumlatorSzint { get => akkumlatorSzint; set => akkumlatorSzint = Math.Clamp(value, 0, 100); }
+		public int AkkumulatorSzint { get => akkumulatorSzint; set => akkumulatorSzint = Math.Clamp(value, 0, 100); }
 
-		public new void InformaciotAd()
+		public override void InformaciotAd()
 		{
-			Console.WriteLine($"{Rendszam} - {Kor} éves elektromos autó, {KilometerOra} km - rel, {AkkumlatorSzint}% töltöttséggel.");
+			Console.WriteLine($"{Rendszam} - {Kor} éves elektromos autó, {KilometerOra} km - rel, {AkkumulatorSzint}% töltöttséggel.");
 		}
 
-		public void Szervizel(int dij)
+		public override void Szervizel(int dij)
 		{
 			if (dij > 100000)
 			{
 				KilometerOra -= 10000;
 			}
-			akkumlatorSzint -= 10;
+			AkkumulatorSzint += 20;
 			Console.WriteLine($"A(z) {Rendszam} jármű szervizelése megtörtént ");
 		}
 	}

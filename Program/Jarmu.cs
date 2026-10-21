@@ -12,14 +12,14 @@ namespace Program
         private int kor;
         private int kilometerOra;
         private int uzemanyagSzint;
-        private bool szervizSzukseges;
+        
 
 		public Jarmu(string rendszam, int kor, int kilometerOra, int uzemanyagSzint)
 		{
-			this.rendszam = rendszam;
-			this.kor = kor;
-			this.kilometerOra = kilometerOra;
-			this.uzemanyagSzint = uzemanyagSzint;
+			Rendszam = rendszam;
+			Kor = kor;
+			KilometerOra = kilometerOra;
+			UzemanyagSzint = uzemanyagSzint;
 		}
 
 		public string Rendszam { get => rendszam; set => rendszam = string.IsNullOrEmpty(value) ? "ISMERETLEN" : value; }
@@ -29,11 +29,11 @@ namespace Program
 		public bool SzervizSzukseges { get => KilometerOra >= 200000; }
 
 
-		public void InformaciotAd(){
-			Console.WriteLine($"{Rendszam} - {Kor} éves jármű, {KilometerOra} km - rel.");
+		public virtual void InformaciotAd(){
+			Console.WriteLine($"{Rendszam} - {Kor} éves jármű, {KilometerOra} km-rel.");
 		}
 
-		public void Szervizel(int dij){
+		public virtual void Szervizel(int dij){
 			if (dij > 100000){
 				KilometerOra -= 10000;
 			}
